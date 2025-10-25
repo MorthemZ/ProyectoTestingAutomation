@@ -65,3 +65,26 @@ def login_in_driver(driver):
     return driver
 #Entrega el navegador logueado al test.
 
+
+#ASSERT:
+# El assert en Python es una instrucción para verificar que algo sea verdadero. Si la condición es falsa, Python lanza un AssertionError, que en Pytest marca el test como fallido. POR EJ:
+#   def test_login_validation(login_in_driver):
+#            driver = login_in_driver
+#>           assert "/inventori.html" in driver.current_url, "No se redirigio al inventario"
+#E           AssertionError: No se redirigio al inventario
+#E           assert '/inventori.html' in 'https://www.saucedemo.com/inventory.html'
+#E            +  where 'https://www.saucedemo.com/inventory.html' = <selenium.webdriver.chrome.webdriver.WebDriver (session="d01683d243ad45149800f900a456cfec")>.current_url
+
+#tests\test_login.py:6: AssertionError
+
+
+def test_inventory(login_in_driver):
+        driver = login_in_driver
+        
+        assert driver.title == "Swag Labs"
+#Verifica que el titulo de la pagina sea Swag Labs
+        products = driver.find_elements(By.CLASS_NAME, "inventory_item")
+#En la variable products guarda la info de los elementos inventory_item que encuentre por el class name
+#find_elements (con “s”) devuelve una lista de elementos, aunque no haya ninguno. En cambio, find_element (sin “s”) devuelve solo el primero y lanza error si no encuentra nada
+#Siempre que busques varios elementos, usá find_elements y combiná con assert para decidir cuándo el test debe fallar. Esto hace que tu test sea más predecible y legible.
+        assert len(products) > 0, "No hay productos visibles en la pagina"

@@ -1,0 +1,10 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+def test_inventory(login_in_driver):
+        driver = login_in_driver
+
+        assert driver.title == "Swag Labs"
+        
+        products = driver.find_elements(By.CLASS_NAME, "inventory_item")
+        assert len(products) > 0, "No hay productos visibles en la pagina"
