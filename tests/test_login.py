@@ -13,23 +13,3 @@ def test_login_validation(login_in_driver):
     finally:
         driver.quit()
 
-
-
-#💡 Ejemplo completo de flujo
-
-#Supongamos que cambiaste test_login.py y agregaste un nuevo test:
-
-#git status
-#git add .
-#git commit -m "Agrego nuevo test para validar inventario"
-#git push
-
-
-#Listo 🚀
-#Cuando entres a tu repo en GitHub, vas a ver los cambios aplicados.
-
-# Si querés actualizar tu repo local (por si editás desde GitHub también)
-#git pull
-
-
-#Eso trae los cambios del remoto hacia tu PC.
