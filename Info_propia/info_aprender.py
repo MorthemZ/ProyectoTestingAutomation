@@ -30,3 +30,38 @@ def login(driver):
 #git add .
 #git commit -m "Descripción de lo que cambió"
 #git push
+
+
+###CONFTEST###
+
+#conftest es un archivo que usamos para hacer los fixture y se puede usar globalmente!
+
+import pytest
+#Framework de testing en Python. Permite crear tests automáticos y usar fixtures.
+
+from selenium import webdriver
+#En este caso no se pasa ni el common ni  el by porque no estamos buscando elementos solo estamos creando el navegador y pasandolo al test.
+
+from utils import login
+#De utils importamos la funcion login para  abrir la pagina y logear.
+
+@pytest.fixture
+#@pytest.fixture → decorador de Python que le dice a Pytest: “Esta función no es un test, es un recurso que puede usarse en tests”.
+def driver():
+    driver = webdriver.Chrome()
+#Es para aclararle a funcion que use chrome como navegador y al ser una funcion puedo reutilizar driver.
+    yield driver
+#Entrega un recurso preparado por la fixture al test, ese recurso puede ser cualquier cosa que el test necesite: navegador, datos, archivos, etc.
+    driver.quit()
+#driver.quit() cierra el navegador completo que se abrió con webdriver.Chrome(), se ejecuta después del test, gracias al fixture con yield.
+
+
+@pytest.fixture
+#@pytest.fixture → decorador de Python que le dice a Pytest: “Esta función no es un test, es un recurso que puede usarse en tests”.
+def login_in_driver(driver):
+#Funcion que logea usando el fixture con la funcion driver para abrir chrome como parametro y usa la funcion de logeo de utils.py usando como paramentro el fixture anterior nuevamente
+    login(driver)
+#Función que hace el login automáticamente.
+    return driver
+#Entrega el navegador logueado al test.
+
