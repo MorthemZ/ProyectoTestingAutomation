@@ -1,4 +1,3 @@
-#Linea de codigo 2 significa
 from selenium.webdriver.common.by import By
 import time
 

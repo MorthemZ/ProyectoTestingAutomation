@@ -12,5 +12,3 @@ def driver():
 def login_in_driver(driver):
     login(driver)
     return driver
-
-#conftest es un archivo que usamos para hacer los fixture y se puede usar globalmente!
