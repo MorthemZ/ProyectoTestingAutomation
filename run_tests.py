@@ -8,6 +8,6 @@ test_files = [
 ]
 
 # Argumentos para ejecutar las pruebas: archivos + reporte html
-pytest_args = test_files + ["--html=report.html", "--self-contained-html","-v"]
+pytest_args = test_files + ["--html=report.html", "--self-contained-html","-v", "-s"]
 
 pytest.main(pytest_args)
